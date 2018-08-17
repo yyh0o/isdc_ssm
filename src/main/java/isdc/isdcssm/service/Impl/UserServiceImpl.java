@@ -1,9 +1,8 @@
 package isdc.isdcssm.service.Impl;
 
-import isdc.isdcssm.dao.UserMapper;
+import isdc.isdcssm.dao.UserDao;
 import isdc.isdcssm.dto.Response.UserResponse;
 import isdc.isdcssm.model.User;
-import isdc.isdcssm.model.UserExample;
 import isdc.isdcssm.service.UserService;
 import isdc.isdcssm.support.TokenAuthenticationService;
 import org.modelmapper.ModelMapper;
@@ -14,21 +13,19 @@ import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
 
-    private final UserMapper userMapper;
+    private final UserDao userDao;
     private final ModelMapper modelMapper;
     @Autowired
-    public UserServiceImpl(UserMapper userMapper, ModelMapper modelMapper){
-        this.userMapper = userMapper;
+    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper){
+        this.userDao = userDao;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
     public boolean signUp(User user) {
-        UserExample userExample = new UserExample();
-        userExample.createCriteria().andEmailEqualTo(user.getEmail());
-        if (userMapper.selectByExample(userExample).size() == 0) {
-            userMapper.insert(user);
+        if (userDao.selectByEmail(user.getEmail()) == null) {
+            userDao.insert(user);
             return true;
         }
         return false;
@@ -36,16 +33,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserResponse> listAll() {
-        return userMapper.selectByExample(new UserExample()).stream().map(p -> modelMapper.map(p,UserResponse.class)).collect(Collectors.toList());
+        return userDao.selectAll().stream().map(p -> modelMapper.map(p,UserResponse.class)).collect(Collectors.toList());
     }
 
     @Override
     public UserResponse login(String email, String password) {
-        UserExample userExample = new UserExample();
-        userExample.createCriteria().andEmailEqualTo(email).andPasswordEqualTo(password);
-        List<User> users = userMapper.selectByExample(userExample);
-        User userByEmail = users.size()==0?null:users.get(0);
-        if (userByEmail!=null) {
+        User userByEmail = userDao.selectByEmail(email);
+        if (userByEmail != null && userByEmail.getPassword().equals(password)) {
             userByEmail.setAccessToken(TokenAuthenticationService.addAuthentication(String.valueOf(userByEmail.getId())));
             return modelMapper.map(userByEmail, UserResponse.class);
         }
@@ -54,6 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse auth(String accessToken) {
-        return null;
+
+        return modelMapper.map(userDao.selectByAccessToken(accessToken), UserResponse.class);
     }
 }

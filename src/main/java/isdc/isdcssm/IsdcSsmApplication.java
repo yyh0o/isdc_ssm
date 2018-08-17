@@ -9,4 +9,6 @@ public class IsdcSsmApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(IsdcSsmApplication.class, args);
 	}
+
+
 }

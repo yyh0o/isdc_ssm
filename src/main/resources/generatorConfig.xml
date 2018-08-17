@@ -6,35 +6,72 @@
     <!-- <classPathEntry location="D:\generator\mysql-connector-java-5.1.34.jar" /> -->
     <!--<classPathEntry location="E:\Database\Oracle\jdbc\lib\ojdbc14.jar" />-->
     <context id="DB2Tables" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!--配置是否使用通用 Mapper 自带的注释扩展，默认 true-->
+        <!--<property name="useMapperCommentGenerator" value="false"/>-->
+
+        <!--通用 Mapper 插件，可以生成带注解的实体类-->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.hsqldb.HsqldbMapper"/>
+            <property name="caseSensitive" value="true"/>
+            <property name="forceAnnotation" value="true"/>
+            <property name="beginningDelimiter" value="`"/>
+            <property name="endingDelimiter" value="`"/>
+        </plugin>
+
+        <!--通用代码生成器插件-->
+        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+            <property name="targetProject" value="src/main/java"/>
+            <property name="targetPackage" value="isdc.isdcssm.dao"/>
+            <property name="templatePath" value="generator/mapper.ftl"/>
+            <property name="mapperSuffix" value="Dao"/>
+            <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/isdc?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"
+                        userId="root"
+                        password="chenyi456">
+        </jdbcConnection>
+
+        <!--MyBatis 生成器只需要生成 Model-->
+        <javaModelGenerator targetPackage="isdc.isdcssm.model" targetProject="src/main/java"/>
+
+        <table tableName="user" >
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <!--<property name="javaFileEncoding" value="UTF-8"/>
+
+
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
-        <!-- 数据库链接URL、用户名、密码 -->
+        &lt;!&ndash; 数据库链接URL、用户名、密码 &ndash;&gt;
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/isdc?useSSL=false" userId="root" password="chenyi456">
         </jdbcConnection>
-        <!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:orcl" userId="scott" password="tiger">
-         </jdbcConnection>-->
+        &lt;!&ndash; <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:orcl" userId="scott" password="tiger">
+         </jdbcConnection>&ndash;&gt;
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
-        <!-- 生成模型的包名和位置 -->
+        &lt;!&ndash; 生成模型的包名和位置 &ndash;&gt;
         <javaModelGenerator targetPackage="isdc.isdcssm.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
-        <!-- 生成的映射文件包名和位置 -->
+        &lt;!&ndash; 生成的映射文件包名和位置 &ndash;&gt;
         <sqlMapGenerator targetPackage="isdc.isdcssm.mapping" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <!-- 生成DAO的包名和位置 -->
+        &lt;!&ndash; 生成DAO的包名和位置 &ndash;&gt;
         <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="isdc.isdcssm.dao"  targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
-        <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+        &lt;!&ndash; 要生成那些表(更改tableName和domainObjectName就可以) &ndash;&gt;
 
         <table tableName="user" domainObjectName="User" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" />
-
+-->
 
     </context>
 </generatorConfiguration>

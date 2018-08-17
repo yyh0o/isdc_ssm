@@ -5,6 +5,7 @@ import java.util.List;
 import isdc.isdcssm.dto.Response.UserResponse;
 import isdc.isdcssm.model.User;
 
+
 public interface UserService {
 
     boolean signUp(User user);
@@ -14,4 +15,5 @@ public interface UserService {
     UserResponse login(String email, String password);
 
     UserResponse auth(String accessToken);
+
 }
