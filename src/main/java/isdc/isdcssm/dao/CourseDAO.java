@@ -1,10 +1,9 @@
 package isdc.isdcssm.dao;
 
 import isdc.isdcssm.model.Course;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -13,6 +12,8 @@ import java.util.List;
 *
 * @author mapper-generator
 */
+@Component
+@Mapper
 public interface CourseDAO extends tk.mybatis.mapper.common.Mapper<Course> {
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.INTEGER, id=true),
@@ -23,8 +24,9 @@ public interface CourseDAO extends tk.mybatis.mapper.common.Mapper<Course> {
             @Result(column="time_start", property="timeStart", jdbcType=JdbcType.TIME),
             @Result(column="week", property="week", jdbcType=JdbcType.VARCHAR),
             @Result(column="schedule_id", property="scheduleId", jdbcType=JdbcType.INTEGER),
-            @Result(column="schedule_id", property="schedule",many = @Many(select = "isdc.isdcssm.dao.FileDAO.selectByCourseId"))
+            @Result(column="id", property="file",many = @Many(select = "isdc.isdcssm.dao.FileDAO.selectByCourseId"))
     })
+    @Select("select * from cms_course where schedule_id = #{scheduleId}")
     List<Course> selectByScheduleId(int scheduleId);
 }
 

@@ -1,5 +1,6 @@
 package isdc.isdcssm;
 
+import isdc.isdcssm.dao.SemesterDAO;
 import isdc.isdcssm.dao.UserDAO;
 import isdc.isdcssm.model.Semester;
 import isdc.isdcssm.service.SemesterService;
@@ -19,6 +20,9 @@ public class IsdcSsmApplicationTests {
 	@Autowired
 	private SemesterService semesterService;
 
+	@Autowired
+	private SemesterDAO semesterDAO;
+
 	public IsdcSsmApplicationTests(){
 
 	}
@@ -26,7 +30,7 @@ public class IsdcSsmApplicationTests {
 	public void contextLoads() {
 
 		 Semester semester =semesterService.findSemesterByDate(new Date());
-		 System.out.println();
+		 System.out.println(semester.getId());
 	}
 	}
 

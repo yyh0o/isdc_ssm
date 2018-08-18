@@ -15,7 +15,7 @@ import java.util.List;
  * Copyright (c) 2017 Peter Mao. All rights reserved.
  * Created by mao on 17-7-24.
  */
-@Service("SemesterService")
+@Service
 @Transactional
 public class SemesterServiceImpl implements SemesterService {
 

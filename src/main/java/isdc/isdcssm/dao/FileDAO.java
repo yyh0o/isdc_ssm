@@ -1,10 +1,12 @@
 package isdc.isdcssm.dao;
 
 import isdc.isdcssm.model.File;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.type.JdbcType;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -13,6 +15,8 @@ import java.util.List;
 *
 * @author mapper-generator
 */
+@Component
+@Mapper
 public interface FileDAO extends tk.mybatis.mapper.common.Mapper<File> {
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.INTEGER, id=true),

@@ -1,17 +1,17 @@
 package isdc.isdcssm.dao;
 
 import isdc.isdcssm.model.Semester;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.springframework.stereotype.Component;
 
 /**
 * 通用 Mapper 代码生成器
 *
 * @author mapper-generator
 */
+@Component
+@Mapper
 public interface SemesterDAO extends tk.mybatis.mapper.common.Mapper<Semester> {
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.INTEGER, id=true),
@@ -20,7 +20,8 @@ public interface SemesterDAO extends tk.mybatis.mapper.common.Mapper<Semester> {
             @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
             @Result(column="id", property="schedule",many = @Many(select = "isdc.isdcssm.dao.ScheduleDAO.selectBySemesterId")),
     })
-    @Select("select * from user where id = #{id} ")
+
+    @Select("select * from cms_semester where id = #{id} ")
     Semester selectByDate(int id);
 }
 
