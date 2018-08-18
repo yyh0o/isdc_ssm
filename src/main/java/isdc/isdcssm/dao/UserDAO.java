@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 */
 @Component
 @Mapper
-public interface UserDao extends tk.mybatis.mapper.common.Mapper<User> {
+public interface UserDAO extends tk.mybatis.mapper.common.Mapper<User> {
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.INTEGER, id=true),
             @Result(column="access_token", property="accessToken", jdbcType=JdbcType.VARCHAR),
@@ -39,7 +39,6 @@ public interface UserDao extends tk.mybatis.mapper.common.Mapper<User> {
     })
     @Select("select * from user where access_token = #{accessToken}")
     User selectByAccessToken(String accessToken);
-
 }
 
 

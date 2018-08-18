@@ -1,8 +1,5 @@
 package isdc.isdcssm.model;
 
-import tk.mybatis.mapper.annotation.NameStyle;
-import tk.mybatis.mapper.code.Style;
-
 import javax.persistence.*;
 
 @Table(name = "`user`")

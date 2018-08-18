@@ -31,7 +31,8 @@ public class UserController {
         this.modelMapper = modelMapper;
     }
 
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+
+    @PostMapping(value = "register")
     public BaseResponse signUp(@RequestBody SignUpRequest request, HttpSession session) {
         if (session.getAttribute("_code") != null && session.getAttribute("_code").equals(request.getCheckCode())) {
             User user = new User();
@@ -41,36 +42,36 @@ public class UserController {
             user.setEnabled(true);
             user.setIsRoot(false);
             if (userService.signUp(user)) {
-                return  BaseResponse.success("注册成功");
+                return BaseResponse.success("注册成功");
             }
             return BaseResponse.badrequest("注册失败");
-        } else {
-            return BaseResponse.badrequest( "验证码错误");
-        }
-    }
-
-    @RequestMapping(value = "auth", method = RequestMethod.POST)
-    public BaseResponse login(@RequestBody LoginRequest request, HttpSession session) {
-        if (session.getAttribute("_code") != null && session.getAttribute("_code").equals(request.getCheckCode())) {
-
-            UserResponse user = userService.login(request.getEmail(), request.getPassword());
-            if (user != null) {
-                return BaseResponse.success(user);
-            }
-            return  BaseResponse.badrequest("用户不存在或密码错误");
         } else {
             return BaseResponse.badrequest("验证码错误");
         }
     }
 
-    @RequestMapping(value = "auth", method = RequestMethod.GET)
+
+    @PostMapping(value = "auth")
+    public BaseResponse login(@RequestBody LoginRequest request, HttpSession session) {
+        if (session.getAttribute("_code") != null && session.getAttribute("_code").equals(request.getCheckCode())) {
+            UserResponse user = userService.login(request.getEmail(), request.getPassword());
+            if (user != null) {
+                return BaseResponse.success(user);
+            }
+            return BaseResponse.badrequest("用户不存在或密码错误");
+        } else {
+            return BaseResponse.badrequest("验证码错误");
+        }
+    }
+
+    @GetMapping(value = "auth")
     @Authorization
     public BaseResponse login(@CurrentUser User user) {
         return BaseResponse.success(modelMapper.map(user, UserResponse.class));
     }
 
 
-    @RequestMapping(value = "authCode", method = RequestMethod.GET)
+    @GetMapping(value = "authCode")
     public void getAuthCode(HttpSession session, HttpServletResponse response) throws IOException {
         response.setContentType("image/jpeg");
         String verifyCode = RandomStringUtils.randomNumeric(4);
