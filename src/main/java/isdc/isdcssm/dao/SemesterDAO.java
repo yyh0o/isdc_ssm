@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+import java.util.zip.DataFormatException;
+
 /**
 * 通用 Mapper 代码生成器
 *
@@ -21,8 +24,8 @@ public interface SemesterDAO extends tk.mybatis.mapper.common.Mapper<Semester> {
             @Result(column="id", property="schedule",many = @Many(select = "isdc.isdcssm.dao.ScheduleDAO.selectBySemesterId")),
     })
 
-    @Select("select * from cms_semester where id = #{id} ")
-    Semester selectByDate(int id);
+    @Select("select * from cms_semester where start_date < #{date} and end_date > #{date}")
+    Semester selectByDate(Date date);
 }
 
 
