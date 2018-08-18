@@ -43,7 +43,15 @@
         <table tableName="cms_semester" domainObjectName="Semester">
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
-
+        <table tableName="cms_schedule" domainObjectName="Schedule">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="cms_course" domainObjectName="Course">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="cms_file" domainObjectName="File">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
         <!--<table tableName="index_banner" domainObjectName="Banner">
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>-->
