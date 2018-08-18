@@ -23,8 +23,12 @@ public class IsdcSsmApplicationTests {
 	}
 	@Test
 	public void contextLoads() {
-			User user = userDao.selectByEmail("843874092@qq.com");
-			System.out.println(user.getUserName());
+
+		int a[] = {62,65,20,77,69,74,68,20,75};
+		for(int i =0;i<10;i++){
+			System.out.print((char)a[i]);
+		}
+		System.out.println();
 		}
 	}
 
