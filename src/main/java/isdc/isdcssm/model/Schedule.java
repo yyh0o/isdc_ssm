@@ -1,6 +1,7 @@
 package isdc.isdcssm.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "`cms_schedule`")
 public class Schedule {
@@ -14,6 +15,16 @@ public class Schedule {
 
     @Column(name = "`semester_id`")
     private Integer semesterId;
+
+    private List<Course> course;
+
+    public List<Course> getCourse() {
+        return course;
+    }
+
+    public void setCourse(List<Course> course) {
+        this.course = course;
+    }
 
     /**
      * @return id

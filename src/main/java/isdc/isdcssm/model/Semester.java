@@ -1,6 +1,7 @@
 package isdc.isdcssm.model;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Table(name = "`cms_semester`")
@@ -18,6 +19,16 @@ public class Semester {
 
     @Column(name = "`title`")
     private String title;
+
+    private List<Schedule> schedule;
+
+    public List<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(List<Schedule> schedule) {
+        this.schedule = schedule;
+    }
 
     /**
      * @return id

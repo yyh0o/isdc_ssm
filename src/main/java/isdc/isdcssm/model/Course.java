@@ -1,6 +1,7 @@
 package isdc.isdcssm.model;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Table(name = "`cms_course`")
@@ -30,6 +31,16 @@ public class Course {
 
     @Column(name = "`schedule_id`")
     private Integer scheduleId;
+
+    private List<File> file;
+
+    public List<File> getFile() {
+        return file;
+    }
+
+    public void setFile(List<File> file) {
+        this.file = file;
+    }
 
     /**
      * @return id
