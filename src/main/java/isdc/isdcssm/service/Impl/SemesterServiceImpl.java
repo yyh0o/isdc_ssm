@@ -48,6 +48,6 @@ public class SemesterServiceImpl implements SemesterService {
 
     @Override
     public Semester findSemesterByDate(Date date) {
-        return semesterDAO.selectByDate(date);
+        return semesterDAO.selectByDate(1);
     }
 }

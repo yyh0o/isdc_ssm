@@ -1,9 +1,6 @@
 package isdc.isdcssm.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
 
 @Table(name = "`cms_course`")
@@ -31,12 +28,8 @@ public class Course {
     @Column(name = "`week`")
     private String week;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-    private List<File> files;
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Schedule.class)
-    @JoinColumn(name = "schedule_id")
-    private Schedule schedule;
+    @Column(name = "`schedule_id`")
+    private Integer scheduleId;
 
     /**
      * @return id
@@ -136,5 +129,17 @@ public class Course {
         this.week = week;
     }
 
+    /**
+     * @return schedule_id
+     */
+    public Integer getScheduleId() {
+        return scheduleId;
+    }
 
+    /**
+     * @param scheduleId
+     */
+    public void setScheduleId(Integer scheduleId) {
+        this.scheduleId = scheduleId;
+    }
 }

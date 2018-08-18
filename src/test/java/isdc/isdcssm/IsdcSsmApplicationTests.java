@@ -26,7 +26,7 @@ public class IsdcSsmApplicationTests {
 	public void contextLoads() {
 
 		 Semester semester =semesterService.findSemesterByDate(new Date());
-		System.out.println(semester.getId());
+		 System.out.println();
 	}
 	}
 

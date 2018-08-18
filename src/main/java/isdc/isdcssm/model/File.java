@@ -1,7 +1,5 @@
 package isdc.isdcssm.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Table(name = "`cms_file`")
@@ -17,10 +15,8 @@ public class File {
     @Column(name = "`name`")
     private String name;
 
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Course.class)
-    @JoinColumn(name = "course_id")
-    private Course course;
+    @Column(name = "`course_id`")
+    private Integer courseId;
 
     /**
      * @return id
@@ -64,5 +60,17 @@ public class File {
         this.name = name;
     }
 
+    /**
+     * @return course_id
+     */
+    public Integer getCourseId() {
+        return courseId;
+    }
 
+    /**
+     * @param courseId
+     */
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
 }

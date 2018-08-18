@@ -1,7 +1,8 @@
 package isdc.isdcssm.support;
 
-import dao.UserDAO;
-import entity.User;
+
+import isdc.isdcssm.dao.UserDAO;
+import isdc.isdcssm.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -28,7 +29,7 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         Integer currentUserId = (Integer) webRequest.getAttribute(Constants.HEADER_USER_ID, RequestAttributes.SCOPE_REQUEST);
         if (currentUserId != null) {
-            User one = userDAO.findOne(currentUserId);
+            User one = userDAO.selectByPrimaryKey(currentUserId);
             if (one != null) {
                 return one;
             }
