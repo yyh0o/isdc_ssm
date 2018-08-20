@@ -1,11 +1,16 @@
 package isdc.isdcssm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "`cms_file`")
 public class File {
     @Id
     @Column(name = "`id`")
+    @JsonIgnore
     @GeneratedValue(generator = "JDBC")
     private Integer id;
 
@@ -15,6 +20,7 @@ public class File {
     @Column(name = "`name`")
     private String name;
 
+    @JsonIgnore
     @Column(name = "`course_id`")
     private Integer courseId;
 

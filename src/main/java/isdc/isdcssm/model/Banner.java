@@ -1,7 +1,9 @@
 package isdc.isdcssm.model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.persistence.*;
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "`index_banner`")
 public class Banner {
     @Id

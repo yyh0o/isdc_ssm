@@ -18,8 +18,8 @@ import java.util.zip.DataFormatException;
 public interface SemesterDAO extends tk.mybatis.mapper.common.Mapper<Semester> {
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.INTEGER, id=true),
-            @Result(column="end_date", property="endDate", jdbcType=JdbcType.DATE),
-            @Result(column="start_date", property="startDate", jdbcType=JdbcType.DATE),
+            @Result(column="end_date", property="semesterEnd", jdbcType=JdbcType.DATE),
+            @Result(column="start_date", property="semesterStart", jdbcType=JdbcType.DATE),
             @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
             @Result(column="id", property="schedule",many = @Many(select = "isdc.isdcssm.dao.ScheduleDAO.selectBySemesterId")),
     })

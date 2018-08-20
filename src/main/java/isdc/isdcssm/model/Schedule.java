@@ -1,8 +1,12 @@
 package isdc.isdcssm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "`cms_schedule`")
 public class Schedule {
     @Id
@@ -13,6 +17,7 @@ public class Schedule {
     @Column(name = "`target`")
     private String target;
 
+    @JsonIgnore
     @Column(name = "`semester_id`")
     private Integer semesterId;
 

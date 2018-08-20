@@ -18,13 +18,13 @@ public interface CourseDAO extends tk.mybatis.mapper.common.Mapper<Course> {
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.INTEGER, id=true),
             @Result(column="content", property="content", jdbcType=JdbcType.VARCHAR),
-            @Result(column="date", property="date", jdbcType=JdbcType.DATE),
-            @Result(column="time_end", property="timeEnd", jdbcType=JdbcType.TIME),
+            @Result(column="date", property="courseDate", jdbcType=JdbcType.DATE),
+            @Result(column="time_end", property="endTime", jdbcType=JdbcType.TIME),
             @Result(column="host", property="host", jdbcType=JdbcType.VARCHAR),
-            @Result(column="time_start", property="timeStart", jdbcType=JdbcType.TIME),
+            @Result(column="time_start", property="startTime", jdbcType=JdbcType.TIME),
             @Result(column="week", property="week", jdbcType=JdbcType.VARCHAR),
             @Result(column="schedule_id", property="scheduleId", jdbcType=JdbcType.INTEGER),
-            @Result(column="id", property="file",many = @Many(select = "isdc.isdcssm.dao.FileDAO.selectByCourseId"))
+            @Result(column="id", property="files",many = @Many(select = "isdc.isdcssm.dao.FileDAO.selectByCourseId"))
     })
     @Select("select * from cms_course where schedule_id = #{scheduleId}")
     List<Course> selectByScheduleId(int scheduleId);

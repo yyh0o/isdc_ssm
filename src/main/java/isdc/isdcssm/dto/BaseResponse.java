@@ -16,13 +16,13 @@ public class BaseResponse<T> {
 
     private int code;
 
-    private String msg;
+    private String message;
 
     private T data;
 
-    public BaseResponse(int code, String msg, T data) {
+    public BaseResponse(int code, String message, T data) {
         this.setCode(code);
-        this.setMsg(msg);
+        this.setMessage(message);
         this.setData(data);
     }
 
@@ -77,12 +77,12 @@ public class BaseResponse<T> {
         this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {

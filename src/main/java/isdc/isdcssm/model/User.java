@@ -1,7 +1,10 @@
 package isdc.isdcssm.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "`user`")
 public class User {
     @Id
