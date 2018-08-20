@@ -25,7 +25,7 @@ public interface SemesterDAO extends tk.mybatis.mapper.common.Mapper<Semester> {
     })
 
     @Select("select * from cms_semester where start_date < #{date} and end_date > #{date}")
-    Semester selectByDate(Date date);
+    Semester selectByDate(@Param("date")Date date);
 }
 
 
