@@ -1,5 +1,7 @@
 package isdc.isdcssm.service.Impl;
 
+import isdc.isdcssm.dao.ApplicationFormDAO;
+import isdc.isdcssm.model.ApplicationForm;
 import isdc.isdcssm.service.WechatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,15 +20,24 @@ import weixin.popular.util.SignatureUtil;
 public class WechatServiceImpl implements WechatService {
 
     private final String token;
-
+    private final ApplicationFormDAO applicationFormDAO;
     @Autowired
-    public WechatServiceImpl(@Value("${weixin.messageToken:token}") String token) {
-
+    public WechatServiceImpl(@Value("${weixin.messageToken:token}") String token, ApplicationFormDAO applicationFormDAO) {
         this.token = token;
+        this.applicationFormDAO = applicationFormDAO;
     }
 
     @Override
     public boolean checkSignature(String timestamp, String nonce, String signature) {
         return signature.equals(SignatureUtil.generateEventMessageSignature(token, timestamp, nonce));
+    }
+
+    @Override
+    public void saveOpenid(String openid) {
+        if (applicationFormDAO.queryByOpenid(openid)==null) {
+            ApplicationForm applicationForm = new ApplicationForm();
+            applicationForm.setOpenid(openid);
+            applicationFormDAO.insert(applicationForm);
+        }
     }
 }
