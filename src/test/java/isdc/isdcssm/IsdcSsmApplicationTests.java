@@ -34,8 +34,10 @@ public class IsdcSsmApplicationTests {
     @Test
     public void contextLoads() {
 
-        Optional<ApplicationForm> applicationForm = joinService.queryForm("otKSqs0djctAeS_ULupp_y-XhkA");
-        System.out.println(applicationForm.isPresent());
+        //Optional<ApplicationForm> applicationForm = joinService.queryForm("otKSqs0djctAeS_ULupp_y-XhkA");
+       // System.out.println(applicationForm.isPresent());
+        ApplicationForm applicationForm1 = null;
+        System.out.println(applicationForm1 ==null);
     }
 }
 

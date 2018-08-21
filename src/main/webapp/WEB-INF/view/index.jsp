@@ -52,8 +52,6 @@
                     民族：
                     <input name="nationality" type="radio" id="chinese" value="chinese" checked/>
                     <label for="chinese">汉族</label>
-                    <input name="nationality" type="radio" id="huihui" value="huihui"/>
-                    <label for="huihui">回族</label>
                     <input name="nationality" type="radio" id="others" value="others"/>
                     <label for="others">其他</label>
                 </div>
