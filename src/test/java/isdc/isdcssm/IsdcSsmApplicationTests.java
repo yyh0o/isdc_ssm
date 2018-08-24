@@ -1,9 +1,13 @@
 package isdc.isdcssm;
 
+import isdc.isdcssm.dao.BlogDAO;
+import isdc.isdcssm.dao.BlogDataDAO;
 import isdc.isdcssm.dao.SemesterDAO;
 import isdc.isdcssm.dao.UserDAO;
 import isdc.isdcssm.model.ApplicationForm;
+import isdc.isdcssm.model.BlogData;
 import isdc.isdcssm.model.Semester;
+import isdc.isdcssm.service.Impl.BlogServiceImpl;
 import isdc.isdcssm.service.JoinService;
 import isdc.isdcssm.service.SemesterService;
 import org.assertj.core.condition.Join;
@@ -22,10 +26,10 @@ import java.util.Optional;
 public class IsdcSsmApplicationTests {
 
     @Autowired
-    private JoinService joinService;
+    private BlogServiceImpl blogService;
 
     @Autowired
-    private SemesterDAO semesterDAO;
+    private BlogDataDAO blogDataDAO;
 
     public IsdcSsmApplicationTests() {
 
@@ -34,10 +38,9 @@ public class IsdcSsmApplicationTests {
     @Test
     public void contextLoads() {
 
-        //Optional<ApplicationForm> applicationForm = joinService.queryForm("otKSqs0djctAeS_ULupp_y-XhkA");
-       // System.out.println(applicationForm.isPresent());
-        ApplicationForm applicationForm1 = null;
-        System.out.println(applicationForm1 ==null);
+
+        blogService.updateBlogData();
+
     }
 }
 
