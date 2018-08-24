@@ -1,6 +1,6 @@
 package isdc.isdcssm.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import javax.persistence.*;
@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class BlogData {
     @Id
     @Column(name = "`id`")
-    @JsonIgnore
     @GeneratedValue(generator = "JDBC")
     private Integer id;
 
@@ -19,12 +18,15 @@ public class BlogData {
     @Column(name = "`url`")
     private String url;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "`date`")
     private Date date;
 
-    @JsonIgnore
     @Column(name = "`request_id`")
     private Integer requestId;
+
+    @Column(name = "`title`")
+    private String title;
 
     /**
      * @return id
@@ -96,5 +98,17 @@ public class BlogData {
         this.requestId = requestId;
     }
 
+    /**
+     * @return title
+     */
+    public String getTitle() {
+        return title;
+    }
 
+    /**
+     * @param title
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

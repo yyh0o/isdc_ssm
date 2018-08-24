@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
  * Created by mao on 17-7-21.
  */
 @RestController
-@RequestMapping("blog/")
+@RequestMapping("blog")
 public class BlogController {
 
     private final BlogService blogService;
@@ -26,7 +26,7 @@ public class BlogController {
     }
 
 
-    @GetMapping("list")
+    @GetMapping("")
     public BaseResponse getBlogData() {
         blogService.updateBlogData();
         return BaseResponse.success(blogService.getAll());

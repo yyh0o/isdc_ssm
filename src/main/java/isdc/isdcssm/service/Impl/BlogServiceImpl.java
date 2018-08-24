@@ -38,7 +38,6 @@ public class BlogServiceImpl implements BlogService {
         List<Blog> blogs = blogDAO.selectAll();
         for (Blog blog : blogs) {
             if (new Date().getTime() - blog.getUpdateTimestamp().getTime() > 86400000) {
-
                 try {
                     String content = readDataFromUrl(blog.getUrl());
                     BlogRequest r = JSON.parseObject(content, BlogRequest.class);
@@ -61,7 +60,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<BlogData> getAll() {
-        return blogDataDAO.selectAll();
+        return blogDataDAO.getAllBlogData();
     }
 
     private String readDataFromUrl(String url)  {
