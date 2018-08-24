@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class BlogData {
     @Id
     @Column(name = "`id`")
+    @JsonIgnore
     @GeneratedValue(generator = "JDBC")
     private Integer id;
 
