@@ -28,6 +28,7 @@ public class BlogData {
     @Column(name = "`title`")
     private String title;
 
+    @Transient
     private String writer;
     /**
      * @return id

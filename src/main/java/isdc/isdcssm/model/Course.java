@@ -46,7 +46,7 @@ public class Course {
     @JsonIgnore
     @Column(name = "`schedule_id`")
     private Integer scheduleId;
-
+    @Transient
     private List<File> files;
 
     public List<File> getFiles() {

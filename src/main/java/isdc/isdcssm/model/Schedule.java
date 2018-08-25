@@ -20,7 +20,7 @@ public class Schedule {
     @JsonIgnore
     @Column(name = "`semester_id`")
     private Integer semesterId;
-
+    @Transient
     private List<Course> course;
 
     public List<Course> getCourse() {

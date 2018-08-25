@@ -31,9 +31,9 @@ public class Semester {
 
     @Column(name = "`title`")
     private String title;
-
+    @Transient
     private List<Schedule> schedule;
-
+    @Transient
     public List<Schedule> getSchedule() {
         return schedule;
     }
