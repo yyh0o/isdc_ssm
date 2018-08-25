@@ -14,20 +14,23 @@ import java.net.MalformedURLException;
  */
 @RestController
 @RequestMapping("blog")
-public class BlogController {
+public class BlogController
+{
 
     private final BlogService blogService;
 
 
     @Autowired
-    public BlogController(BlogService blogService) {
+    public BlogController(BlogService blogService)
+    {
         this.blogService = blogService;
 
     }
 
 
     @GetMapping("")
-    public BaseResponse getBlogData() {
+    public BaseResponse getBlogData()
+    {
         blogService.updateBlogData();
         return BaseResponse.success(blogService.getAll());
     }

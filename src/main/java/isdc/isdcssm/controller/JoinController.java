@@ -17,28 +17,34 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("join/{openid}")
-public class JoinController {
+public class JoinController
+{
 
     private final JoinService joinService;
 
     @Autowired
-    public JoinController(JoinService joinService) {
+    public JoinController(JoinService joinService)
+    {
         this.joinService = joinService;
     }
 
     @GetMapping
-    public String join(@PathVariable String openid) {
+    public String join(@PathVariable String openid)
+    {
         Optional<ApplicationForm> applicationForm = joinService.queryForm(openid);
-        if (applicationForm.isPresent() && applicationForm.get().getName() != null) {
+        if (applicationForm.isPresent() && applicationForm.get().getName() != null)
+        {
             return "success";
         }
         return "index";
     }
 
     @PostMapping
-    public String submit(@PathVariable String openid, @RequestParam("name") String name, @RequestParam("stuId") Long stuId, @RequestParam("gender") String gender, @RequestParam("nationality") String nationality, @RequestParam("tel") Long tel, @RequestParam("email") String email, @RequestParam("introduce") String introduce, @RequestParam("description") String description) {
+    public String submit(@PathVariable String openid, @RequestParam("name") String name, @RequestParam("stuId") Long stuId, @RequestParam("gender") String gender, @RequestParam("nationality") String nationality, @RequestParam("tel") Long tel, @RequestParam("email") String email, @RequestParam("introduce") String introduce, @RequestParam("description") String description)
+    {
         Optional<ApplicationForm> optional = joinService.queryForm(openid);
-        if (optional.isPresent() && optional.get().getName() == null) {
+        if (optional.isPresent() && optional.get().getName() == null)
+        {
             ApplicationForm applicationForm = optional.get();
             applicationForm.setOpenid(openid);
             applicationForm.setDescription(description);

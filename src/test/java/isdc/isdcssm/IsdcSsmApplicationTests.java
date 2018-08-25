@@ -17,13 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class IsdcSsmApplicationTests {
+public class IsdcSsmApplicationTests
+{
 
     @Autowired
     private BlogServiceImpl blogService;
@@ -31,16 +33,25 @@ public class IsdcSsmApplicationTests {
     @Autowired
     private BlogDataDAO blogDataDAO;
 
-    public IsdcSsmApplicationTests() {
+    public IsdcSsmApplicationTests()
+    {
 
     }
 
     @Test
-    public void contextLoads() {
-
-
+    public void contextLoads()
+    {
         blogService.updateBlogData();
+    }
 
+    @Test
+    public void BlogDataDAOTest()
+    {
+        List blogData = blogDataDAO.getAllBlogData();
+        for(Object t:blogData)
+        {
+            System.out.println(t);
+        }
     }
 }
 

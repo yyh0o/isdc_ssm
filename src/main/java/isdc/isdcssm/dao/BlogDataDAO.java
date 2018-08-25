@@ -25,7 +25,8 @@ public interface BlogDataDAO extends tk.mybatis.mapper.common.Mapper<BlogData> {
             @Result(column="url", property="url", jdbcType=JdbcType.VARCHAR),
             @Result(column="date", property="date", jdbcType=JdbcType.DATE),
             @Result(column="request_id", property="requestId", jdbcType=JdbcType.INTEGER),
-            @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR)
+            @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
+            @Result(column="request_id", property ="writer", one=@One(select = "isdc.isdcssm.dao.BlogDAO.getWriterById"))
     })
     @Select("select * from blog_data order by date DESC")
     List<BlogData> getAllBlogData();

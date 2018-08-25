@@ -22,36 +22,45 @@ import java.util.List;
 
 @Service
 @Transactional
-public class BlogServiceImpl implements BlogService {
+public class BlogServiceImpl implements BlogService
+{
 
     private final BlogDAO blogDAO;
     private final BlogDataDAO blogDataDAO;
 
     @Autowired
-    BlogServiceImpl(BlogDAO blogDAO, BlogDataDAO blogDataDAO) {
+    BlogServiceImpl(BlogDAO blogDAO, BlogDataDAO blogDataDAO)
+    {
         this.blogDAO = blogDAO;
         this.blogDataDAO = blogDataDAO;
     }
 
     @Override
-    public void updateBlogData()  {
+    public void updateBlogData()
+    {
         List<Blog> blogs = blogDAO.selectAll();
-        for (Blog blog : blogs) {
-            if (new Date().getTime() - blog.getUpdateTimestamp().getTime() > 86400000) {
-                try {
+        for (Blog blog : blogs)
+        {
+            if (blog.getUpdateTimestamp()==null || new Date().getTime() - blog.getUpdateTimestamp().getTime() > 86400000)
+            {
+                try
+                {
                     String content = readDataFromUrl(blog.getUrl());
                     BlogRequest r = JSON.parseObject(content, BlogRequest.class);
-                    if (blog.getUpdateTimestamp() == null || (r.getTimestamp().getTime() > blog.getUpdateTimestamp().getTime() && r.getArray().size() > 0)) {
+                    if (blog.getUpdateTimestamp() == null || (r.getTimestamp().getTime() > blog.getUpdateTimestamp().getTime() && r.getArray().size() > 0))
+                    {
                         r.setBlogRequestID(blog.getId());
                         blogDataDAO.deleteByRequestID(blog.getId());
-                        for (BlogData blogData : r.getArray()) {
+                        for (BlogData blogData : r.getArray())
+                        {
                             if (blogData.getUrl() != null)
                                 blogDataDAO.insert(blogData);
                         }
                         blog.setUpdateTimestamp(new Date());
                         blogDAO.updateByPrimaryKey(blog);
                     }
-                }catch (Exception e){
+                } catch (Exception e)
+                {
                     e.printStackTrace();
                 }
             }
@@ -59,29 +68,34 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<BlogData> getAll() {
+    public List<BlogData> getAll()
+    {
         return blogDataDAO.getAllBlogData();
     }
 
-    private String readDataFromUrl(String url)  {
-            String result = "";
-            try {
-                URL path = new URL(url);
-                InputStream is = path.openStream();
-                InputStreamReader isr = new InputStreamReader(is, "utf-8");
-                BufferedReader br = new BufferedReader(isr);
-                String data = br.readLine();
-                while (data != null) {
-                    result += data;
-                    System.out.println(data);
-                    data = br.readLine();
-                }
-                br.close();
-                isr.close();
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+    private String readDataFromUrl(String url)
+    {
+        String result = "";
+        try
+        {
+            URL path = new URL(url);
+            InputStream is = path.openStream();
+            InputStreamReader isr = new InputStreamReader(is, "utf-8");
+            BufferedReader br = new BufferedReader(isr);
+            String data = br.readLine();
+            while (data != null)
+            {
+                result += data;
+                System.out.println(data);
+                data = br.readLine();
             }
+            br.close();
+            isr.close();
+            is.close();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
         return result;
     }
 
