@@ -17,26 +17,30 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("")
-public class IndexController {
+public class IndexController
+{
 
     private final SemesterService semesterService;
 
     private final BannerService bannerService;
 
     @Autowired
-    public IndexController(SemesterService semesterService, BannerService bannerService) {
+    public IndexController(SemesterService semesterService, BannerService bannerService)
+    {
         this.semesterService = semesterService;
         this.bannerService = bannerService;
     }
 
     @RequestMapping(value = "schedule", method = RequestMethod.GET)
-    public BaseResponse listAnnounce() {
+    public BaseResponse listAnnounce()
+    {
         return BaseResponse.success(semesterService.findSemesterByDate(new Date(System.currentTimeMillis())));
     }
 
     @RequestMapping(value = "banner", method = RequestMethod.GET)
-    public BaseResponse listBanner() {
-        return  BaseResponse.success( bannerService.findAll());
+    public BaseResponse listBanner()
+    {
+        return BaseResponse.success(bannerService.findAll());
     }
 
 }

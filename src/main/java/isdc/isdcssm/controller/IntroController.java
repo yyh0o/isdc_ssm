@@ -15,21 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("intro/")
-public class IntroController {
+public class IntroController
+{
     private final AnnounceService announceService;
 
     @Autowired
-    public IntroController(AnnounceService announceService) {
+    public IntroController(AnnounceService announceService)
+    {
         this.announceService = announceService;
     }
 
     @RequestMapping(value = "announce", method = RequestMethod.GET)
-    public BaseResponse listAnnounce() {
-        return  BaseResponse.success(announceService.listAll());
+    public BaseResponse listAnnounce()
+    {
+        return BaseResponse.success(announceService.listAll());
     }
 
     @RequestMapping(value = "suggest", method = RequestMethod.POST)
-    public BaseResponse suggest() {
+    public BaseResponse suggest()
+    {
         return BaseResponse.error("Not implemented yet");
     }
 

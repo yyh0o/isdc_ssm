@@ -28,6 +28,7 @@ public class BlogData {
     @Column(name = "`title`")
     private String title;
 
+    private String writer;
     /**
      * @return id
      */
@@ -111,4 +112,8 @@ public class BlogData {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public void setWriter(String writer){this.writer = writer;}
+
+    public String getWriter() {return writer;}
 }
