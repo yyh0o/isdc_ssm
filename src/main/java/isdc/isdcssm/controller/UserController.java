@@ -64,12 +64,20 @@ public class UserController {
         }
     }
 
-    @GetMapping(value = "auth")
+    /*@GetMapping(value = "auth")
     @Authorization
     public BaseResponse login(@CurrentUser User user) {
+        System.out.println("authauth");
         return BaseResponse.success(modelMapper.map(user, UserResponse.class));
+    }*/
+    @RequestMapping(value = "auth", method = RequestMethod.GET)
+    public BaseResponse login(@CookieValue("accessToken") String accessToken, HttpServletResponse response) {
+        UserResponse user = userService.auth(accessToken);
+        if (user != null) {
+            return BaseResponse.success(user);
+        }
+        return BaseResponse.badrequest( "登录已过期，请重新登录");
     }
-
 
     @GetMapping(value = "authCode")
     public void getAuthCode(HttpSession session, HttpServletResponse response) throws IOException {
