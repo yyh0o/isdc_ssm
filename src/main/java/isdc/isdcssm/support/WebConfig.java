@@ -5,11 +5,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
 @Configuration
-public class WebConfig extends WebMvcConfigurationSupport {
+public class WebConfig implements WebMvcConfigurer
+{
 
     /**
      * CurrentUserMethod参数解析器
@@ -20,7 +22,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
     @Autowired
     private CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver;
     @Override
-    protected void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(currentUserMethodArgumentResolver);
 
     }
