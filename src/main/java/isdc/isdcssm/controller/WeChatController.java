@@ -5,10 +5,7 @@ import isdc.isdcssm.job.AccessTokenJob;
 import isdc.isdcssm.service.UserService;
 import isdc.isdcssm.service.WechatService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import weixin.popular.bean.message.EventMessage;
 import weixin.popular.bean.xmlmessage.XMLNewsMessage;
 import weixin.popular.bean.xmlmessage.XMLTextMessage;
@@ -32,7 +29,7 @@ public class WeChatController {
         this.userService = userService;
     }
 
-    @RequestMapping("notify")
+    @GetMapping("notify")
     public String onMessageReceived(@RequestBody(required = false) String data, @RequestParam("signature") String signature, @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce, @RequestParam(value = "echostr", required = false) String echostr) {
 
         if (wechatService.checkSignature(timestamp, nonce, signature)) {
