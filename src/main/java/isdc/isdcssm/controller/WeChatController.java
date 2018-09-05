@@ -34,6 +34,7 @@ public class WeChatController {
 
     @RequestMapping("notify")
     public String onMessageReceived(@RequestBody(required = false) String data, @RequestParam("signature") String signature, @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce, @RequestParam(value = "echostr", required = false) String echostr) {
+
         if (wechatService.checkSignature(timestamp, nonce, signature)) {
             if (echostr != null)
                 return echostr;
@@ -62,7 +63,7 @@ public class WeChatController {
                 return new XMLTextMessage(eventMessage.getFromUserName(), eventMessage.getToUserName(), "我们已经收到了您的消息，将会在24小时内作出回复。回复【报名】开始填写报名表，报名成功后回复【面试】获取后续面试安排").toXML();
             }
         }
-        return "";
+        return "Fail";
     }
 
 
