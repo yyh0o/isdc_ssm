@@ -1,5 +1,7 @@
 package isdc.isdcssm.support;
 
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -12,7 +14,7 @@ import java.util.Optional;
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
-
+    @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) {
         if (!(handler instanceof HandlerMethod)) {

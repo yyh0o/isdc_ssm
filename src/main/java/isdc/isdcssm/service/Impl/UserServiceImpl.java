@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse auth(String accessToken) {
-
         return modelMapper.map(userDAO.selectByAccessToken(accessToken), UserResponse.class);
     }
 }

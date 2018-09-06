@@ -43,6 +43,7 @@ public class JoinController
     public String submit(@PathVariable String openid, @RequestParam("name") String name, @RequestParam("stuId") Long stuId, @RequestParam("gender") String gender, @RequestParam("nationality") String nationality, @RequestParam("tel") Long tel, @RequestParam("email") String email, @RequestParam("introduce") String introduce, @RequestParam("description") String description)
     {
         Optional<ApplicationForm> optional = joinService.queryForm(openid);
+
         if (optional.isPresent() && optional.get().getName() == null)
         {
             ApplicationForm applicationForm = optional.get();
@@ -57,7 +58,10 @@ public class JoinController
             applicationForm.setGender(gender);
             applicationForm.setNationality(nationality);
             joinService.submit(applicationForm);
+            System.out.println("submit");
         }
+        System.out.println("submit2");
+
         return "success";
     }
 }

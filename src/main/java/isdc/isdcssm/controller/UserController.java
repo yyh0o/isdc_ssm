@@ -67,9 +67,9 @@ public class UserController {
     @GetMapping(value = "auth")
     @Authorization
     public BaseResponse login(@CurrentUser User user) {
+        System.out.println(user.getId());
         return BaseResponse.success(modelMapper.map(user, UserResponse.class));
     }
-
 
     @GetMapping(value = "authCode")
     public void getAuthCode(HttpSession session, HttpServletResponse response) throws IOException {

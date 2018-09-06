@@ -1,5 +1,6 @@
 package isdc.isdcssm.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -18,7 +19,6 @@ public class BlogData {
     @Column(name = "`url`")
     private String url;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "`date`")
     private Date date;
 
@@ -28,6 +28,7 @@ public class BlogData {
     @Column(name = "`title`")
     private String title;
 
+    @Transient
     private String writer;
     /**
      * @return id

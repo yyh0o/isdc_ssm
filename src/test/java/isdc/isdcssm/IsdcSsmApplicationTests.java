@@ -47,11 +47,7 @@ public class IsdcSsmApplicationTests
     @Test
     public void BlogDataDAOTest()
     {
-        List blogData = blogDataDAO.getAllBlogData();
-        for(Object t:blogData)
-        {
-            System.out.println(t);
-        }
+        blogService.updateBlogData();
     }
 }
 
