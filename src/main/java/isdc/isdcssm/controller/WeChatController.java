@@ -29,7 +29,7 @@ public class WeChatController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "notify")
+    @RequestMapping(value = "notify")
     public String onMessageReceived(@RequestBody(required = false) String data, @RequestParam("signature") String signature, @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce, @RequestParam(value = "echostr", required = false) String echostr) {
 
         if (wechatService.checkSignature(timestamp, nonce, signature)) {
