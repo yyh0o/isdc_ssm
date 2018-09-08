@@ -63,7 +63,12 @@ public class WeChatController {
         return "Fail";
     }
 
-
+    @GetMapping(value = "signature")
+    public String getSignature(@RequestParam("signature") String signature, @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce, @RequestParam(value = "echostr") String echostr){
+        if (wechatService.checkSignature(timestamp, nonce, signature)) {
+            return echostr;
+        }else return "fail";
+    }
     @GetMapping(value = "token")
     public String getToken() {
 
