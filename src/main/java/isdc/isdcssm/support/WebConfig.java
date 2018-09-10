@@ -35,6 +35,13 @@ public class WebConfig implements WebMvcConfigurer
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authorizationInterceptor).addPathPatterns("/user/auth");
     }
-
+    /*@Bean
+    public InternalResourceViewResolver viewResolver(){
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("views/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
+    }*/
 }
 
