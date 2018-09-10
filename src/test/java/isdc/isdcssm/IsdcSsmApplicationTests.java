@@ -10,6 +10,7 @@ import isdc.isdcssm.model.Semester;
 import isdc.isdcssm.service.Impl.BlogServiceImpl;
 import isdc.isdcssm.service.JoinService;
 import isdc.isdcssm.service.SemesterService;
+import isdc.isdcssm.service.WechatService;
 import org.assertj.core.condition.Join;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +32,7 @@ public class IsdcSsmApplicationTests
     private BlogServiceImpl blogService;
 
     @Autowired
-    private BlogDataDAO blogDataDAO;
+    private WechatService wechatService;
 
     public IsdcSsmApplicationTests()
     {
@@ -41,7 +42,7 @@ public class IsdcSsmApplicationTests
     @Test
     public void contextLoads()
     {
-        blogService.updateBlogData();
+      wechatService.saveOpenid("6297283158959");
     }
 
     @Test
