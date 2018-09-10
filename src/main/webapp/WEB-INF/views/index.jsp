@@ -32,7 +32,7 @@
                     <label for="name">姓名</label>
                 </div>
                 <div class="input-field col s12">
-                    <input placeholder="2017141463XXX" id="stuId" minlength="13" maxlength="13" type="number" required
+                    <input placeholder="2018141463XXX" id="stuId" minlength="13" maxlength="13" type="number" required
                            name="stuId"
                            class="validate">
                     <label for="stuId">学号</label>
