@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface JoinService {
     void submit(ApplicationForm applicationForm);
 
-    ApplicationForm queryForm(String openid);
+    Optional<ApplicationForm> queryForm(String openid);
 }
