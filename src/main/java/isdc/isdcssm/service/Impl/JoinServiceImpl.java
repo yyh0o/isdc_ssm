@@ -31,7 +31,7 @@ public class JoinServiceImpl implements JoinService {
     }
 
     @Override
-    public Optional<ApplicationForm> queryForm(String openid) {
-        return Optional.ofNullable(applicationFormDAO.queryByOpenid(openid));
+    public ApplicationForm queryForm(String openid) {
+        return applicationFormDAO.queryByOpenid(openid);
     }
 }
