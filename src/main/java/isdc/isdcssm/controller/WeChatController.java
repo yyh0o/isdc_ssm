@@ -63,12 +63,12 @@ public class WeChatController {
                     return xmlNewsMessage.toXML();
                 } else if (eventMessage.getContent().contains("面试")) {
                     String openid = eventMessage.getFromUserName();
-                    ApplicationForm application = joinService.queryForm(openid);
+                    Optional<ApplicationForm> applications = joinService.queryForm(openid);
                     String msg = "";
-                    if (application == null)
+                    if (!applications.isPresent())
                         msg = "查询不到您的报名！";
                     else {
-                        Date date = application.getInterview();
+                        Date date = applications.get().getInterview();
                         if (date == null)
                             msg = "正在安排您的面试时间，请耐心等待！";
                         else
