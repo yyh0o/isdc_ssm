@@ -74,7 +74,9 @@ public class JoinController
 
     @GetMapping("form")
     public BaseResponse<List<ApplicationForm>> listAllForms(@CookieValue(value = "accessToken") String accessToken) {
+        System.out.println("get form");
         if (userService.adminAuth(accessToken)) {
+            System.out.println("auth success");
             return BaseResponse.success(joinService.queryAll());
         } else {
             return BaseResponse.error();
