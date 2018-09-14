@@ -2,6 +2,7 @@ package isdc.isdcssm.service;
 
 import isdc.isdcssm.model.ApplicationForm;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -12,4 +13,6 @@ public interface JoinService {
     void submit(ApplicationForm applicationForm);
 
     Optional<ApplicationForm> queryForm(String openid);
+
+    List<ApplicationForm> queryAll();
 }

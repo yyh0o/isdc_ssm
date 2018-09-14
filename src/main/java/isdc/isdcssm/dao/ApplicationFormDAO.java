@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -40,6 +41,9 @@ public interface ApplicationFormDAO extends tk.mybatis.mapper.common.Mapper<Appl
     })
     @Select("select * from application_form where openid = #{openid}")
     ApplicationForm queryByOpenid(@Param("openid")String openid);
+
+    @Select("select * from application_form")
+    List<ApplicationForm> findAll();
 }
 
 

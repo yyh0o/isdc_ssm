@@ -54,4 +54,12 @@ public class UserServiceImpl implements UserService {
     public UserResponse auth(String accessToken) {
         return modelMapper.map(userDAO.selectByAccessToken(accessToken), UserResponse.class);
     }
+
+    @Override
+    public boolean adminAuth(String accessToken) {
+        User checker = userDAO.selectByAccessToken(accessToken);
+        if(checker != null && checker.getIsRoot())
+            return true;
+        return  false;
+    }
 }
