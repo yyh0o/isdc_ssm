@@ -16,10 +16,10 @@ public class ApplicationForm {
     @Column(name = "`openid`")
     private String openid;
 
-    @Column(name = "`stu_id`")
+    @Column(name = "stu_id")
     private Long stuId;
 
-    @Column(name = "`create_date`")
+    @Column(name = "create_date")
     private Date createDate;
 
     @Column(name = "`description`")
@@ -46,10 +46,10 @@ public class ApplicationForm {
     @Column(name = "`block`")
     private Boolean block;
 
-    @Column(name = "`impression_score`")
+    @Column(name = "impression_score")
     private Double impressionScore;
 
-    @Column(name = "`integrated_score`")
+    @Column(name = "integrated_score")
     private Double integratedScore;
 
     @Column(name = "`interviewer`")
@@ -64,7 +64,7 @@ public class ApplicationForm {
     @Column(name = "`reason`")
     private String reason;
 
-    @Column(name = "`tech_score`")
+    @Column(name = "tech_score")
     private Double techScore;
 
     /**
