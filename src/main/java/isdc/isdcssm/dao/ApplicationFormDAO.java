@@ -42,7 +42,7 @@ public interface ApplicationFormDAO extends tk.mybatis.mapper.common.Mapper<Appl
     @Select("select * from application_form where openid = #{openid}")
     ApplicationForm queryByOpenid(@Param("openid")String openid);
 
-    @Select("select * from application_form")
+    @Select("select * from application_form where name is not null")
     List<ApplicationForm> findAll();
 }
 
