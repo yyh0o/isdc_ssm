@@ -1,6 +1,8 @@
 package isdc.isdcssm.controller;
 
 
+import isdc.isdcssm.dto.BaseResponse;
+import isdc.isdcssm.dto.Response.UserResponse;
 import isdc.isdcssm.job.AccessTokenJob;
 import isdc.isdcssm.model.ApplicationForm;
 import isdc.isdcssm.service.JoinService;
@@ -16,6 +18,7 @@ import weixin.popular.util.XMLConverUtil;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -86,5 +89,26 @@ public class WeChatController {
     public String getToken() {
 
         return AccessTokenJob.access_token;
+    }
+
+    @GetMapping("form")
+    public BaseResponse<List<ApplicationForm>> listAllForms(@CookieValue(value = "accessToken") String accessToken) {
+        if (userService.adminAuth(accessToken)) {
+            return BaseResponse.success(joinService.queryAll());
+        } else {
+            return BaseResponse.error();
+        }
+    }
+
+    @PutMapping("form")
+    public BaseResponse updateForm(@CookieValue(value = "accessToken") String accessToken, @RequestBody ApplicationForm form) {
+        if (userService.adminAuth(accessToken)) {
+            UserResponse user = userService.auth(accessToken);
+            form.setInterviewer(user.getUserName());
+            joinService.submit(form);
+            return BaseResponse.success();
+        } else {
+            return BaseResponse.error();
+        }
     }
 }
