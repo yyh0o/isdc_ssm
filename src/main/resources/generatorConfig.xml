@@ -53,9 +53,9 @@
             <columnOverride column="judge" jdbcType="VARCHAR" />
             <columnOverride column="introduce" jdbcType="VARCHAR" />
         </table>-->
-         <!--<table tableName="service_jwc_score" domainObjectName="ScoreRequest">
-            <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>-->
+        <!--<table tableName="service_jwc_score" domainObjectName="ScoreRequest">
+                  <generatedKey column="id" sqlStatement="JDBC"/>
+              </table>-->
        <!-- <table tableName="announce" domainObjectName="Announce">
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>-->

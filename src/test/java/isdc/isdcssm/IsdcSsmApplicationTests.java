@@ -1,9 +1,6 @@
 package isdc.isdcssm;
 
-import isdc.isdcssm.dao.BlogDAO;
-import isdc.isdcssm.dao.BlogDataDAO;
-import isdc.isdcssm.dao.SemesterDAO;
-import isdc.isdcssm.dao.UserDAO;
+import isdc.isdcssm.dao.*;
 import isdc.isdcssm.model.ApplicationForm;
 import isdc.isdcssm.model.BlogData;
 import isdc.isdcssm.model.Semester;
@@ -32,7 +29,7 @@ public class IsdcSsmApplicationTests
     private BlogServiceImpl blogService;
 
     @Autowired
-    private WechatService wechatService;
+    private ApplicationFormDAO applicationFormDAO;
 
     public IsdcSsmApplicationTests()
     {
@@ -42,7 +39,8 @@ public class IsdcSsmApplicationTests
     @Test
     public void contextLoads()
     {
-      wechatService.saveOpenid("6297283158959");
+        List<ApplicationForm> a = applicationFormDAO.selectAll();
+        List b = a;
     }
 
     @Test

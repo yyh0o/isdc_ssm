@@ -41,7 +41,7 @@ public interface ApplicationFormDAO extends tk.mybatis.mapper.common.Mapper<Appl
     })
     @Select("select * from application_form where openid = #{openid}")
     ApplicationForm queryByOpenid(@Param("openid")String openid);
-
+  
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.INTEGER, id=true),
             @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
