@@ -1,15 +1,13 @@
 package isdc.isdcssm;
 
-import isdc.isdcssm.dao.BlogDAO;
-import isdc.isdcssm.dao.BlogDataDAO;
-import isdc.isdcssm.dao.SemesterDAO;
-import isdc.isdcssm.dao.UserDAO;
+import isdc.isdcssm.dao.*;
 import isdc.isdcssm.model.ApplicationForm;
 import isdc.isdcssm.model.BlogData;
 import isdc.isdcssm.model.Semester;
 import isdc.isdcssm.service.Impl.BlogServiceImpl;
 import isdc.isdcssm.service.JoinService;
 import isdc.isdcssm.service.SemesterService;
+import isdc.isdcssm.service.WechatService;
 import org.assertj.core.condition.Join;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +29,7 @@ public class IsdcSsmApplicationTests
     private BlogServiceImpl blogService;
 
     @Autowired
-    private BlogDataDAO blogDataDAO;
+    private ApplicationFormDAO applicationFormDAO;
 
     public IsdcSsmApplicationTests()
     {
@@ -41,7 +39,8 @@ public class IsdcSsmApplicationTests
     @Test
     public void contextLoads()
     {
-        blogService.updateBlogData();
+        List<ApplicationForm> a = applicationFormDAO.selectAll();
+        List b = a;
     }
 
     @Test

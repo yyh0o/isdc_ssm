@@ -16,4 +16,5 @@ public interface UserService {
 
     UserResponse auth(String accessToken);
 
+    boolean adminAuth(String accessToken);
 }

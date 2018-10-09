@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -33,5 +34,10 @@ public class JoinServiceImpl implements JoinService {
     @Override
     public Optional<ApplicationForm> queryForm(String openid) {
         return Optional.ofNullable(applicationFormDAO.queryByOpenid(openid));
+    }
+
+    @Override
+    public List<ApplicationForm> queryAll() {
+        return applicationFormDAO.findAll();
     }
 }

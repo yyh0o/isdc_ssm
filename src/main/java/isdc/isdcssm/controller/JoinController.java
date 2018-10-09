@@ -1,13 +1,18 @@
 package isdc.isdcssm.controller;
 
+import isdc.isdcssm.dto.BaseResponse;
+import isdc.isdcssm.dto.Response.UserResponse;
 import isdc.isdcssm.model.ApplicationForm;
+import isdc.isdcssm.model.User;
 import isdc.isdcssm.service.JoinService;
+import isdc.isdcssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -16,19 +21,21 @@ import java.util.Optional;
  */
 
 @Controller
-@RequestMapping("join/{openid}")
+@RequestMapping("join/")
 public class JoinController
 {
 
     private final JoinService joinService;
+    private final UserService userService;
 
     @Autowired
-    public JoinController(JoinService joinService)
+    public JoinController(JoinService joinService, UserService userService)
     {
         this.joinService = joinService;
+        this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("{openid}")
     public String join(@PathVariable String openid)
     {
         Optional<ApplicationForm> applicationForm = joinService.queryForm(openid);
@@ -39,7 +46,7 @@ public class JoinController
         return "index";
     }
 
-    @PostMapping
+    @PostMapping("{openid}")
     public String submit(@PathVariable String openid, @RequestParam("name") String name, @RequestParam("stuId") Long stuId, @RequestParam("gender") String gender, @RequestParam("nationality") String nationality, @RequestParam("tel") Long tel, @RequestParam("email") String email, @RequestParam("introduce") String introduce, @RequestParam("description") String description)
     {
         Optional<ApplicationForm> optional = joinService.queryForm(openid);
@@ -63,5 +70,28 @@ public class JoinController
         System.out.println("submit2");
 
         return "success";
+    }
+
+    @GetMapping("form")
+    public BaseResponse<List<ApplicationForm>> listAllForms(@CookieValue(value = "accessToken") String accessToken) {
+        System.out.println("get form");
+        if (userService.adminAuth(accessToken)) {
+            System.out.println("auth success");
+            return BaseResponse.success(joinService.queryAll());
+        } else {
+            return BaseResponse.error();
+        }
+    }
+
+    @PutMapping("form")
+    public BaseResponse updateForm(@CookieValue(value = "accessToken") String accessToken, @RequestBody ApplicationForm form) {
+        if (userService.adminAuth(accessToken)) {
+            UserResponse user = userService.auth(accessToken);
+            form.setInterviewer(user.getUserName());
+            joinService.submit(form);
+            return BaseResponse.success();
+        } else {
+            return BaseResponse.error();
+        }
     }
 }

@@ -1,5 +1,7 @@
 package isdc.isdcssm.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -41,6 +43,7 @@ public class ApplicationForm {
     private Long tel;
 
     @Column(name = "`interview`")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date interview;
 
     @Column(name = "`block`")
