@@ -4,9 +4,11 @@ import isdc.isdcssm.dao.*;
 import isdc.isdcssm.model.ApplicationForm;
 import isdc.isdcssm.model.BlogData;
 import isdc.isdcssm.model.Semester;
+import isdc.isdcssm.model.User;
 import isdc.isdcssm.service.Impl.BlogServiceImpl;
 import isdc.isdcssm.service.JoinService;
 import isdc.isdcssm.service.SemesterService;
+import isdc.isdcssm.service.UserService;
 import isdc.isdcssm.service.WechatService;
 import org.assertj.core.condition.Join;
 import org.junit.Test;
@@ -27,6 +29,8 @@ public class IsdcSsmApplicationTests
 
     @Autowired
     private BlogServiceImpl blogService;
+    @Autowired
+    private UserDAO userDAO;
 
     @Autowired
     private ApplicationFormDAO applicationFormDAO;
@@ -47,6 +51,13 @@ public class IsdcSsmApplicationTests
     public void BlogDataDAOTest()
     {
         blogService.updateBlogData();
+    }
+
+    @Test
+    public void UserDAOTest()
+    {
+        User user = userDAO.selectByEmail("1364847132@qq.com");
+        System.out.println(user.getIsMember());
     }
 }
 
