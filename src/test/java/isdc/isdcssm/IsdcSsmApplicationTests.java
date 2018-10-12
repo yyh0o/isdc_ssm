@@ -5,11 +5,9 @@ import isdc.isdcssm.model.ApplicationForm;
 import isdc.isdcssm.model.BlogData;
 import isdc.isdcssm.model.Semester;
 import isdc.isdcssm.model.User;
+import isdc.isdcssm.service.*;
 import isdc.isdcssm.service.Impl.BlogServiceImpl;
-import isdc.isdcssm.service.JoinService;
-import isdc.isdcssm.service.SemesterService;
-import isdc.isdcssm.service.UserService;
-import isdc.isdcssm.service.WechatService;
+import isdc.isdcssm.service.Impl.FileServiceImpl;
 import org.assertj.core.condition.Join;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,9 +30,9 @@ public class IsdcSsmApplicationTests
     private BlogServiceImpl blogService;
     @Autowired
     private UserDAO userDAO;
-
     @Autowired
     private ApplicationFormDAO applicationFormDAO;
+
 
     public IsdcSsmApplicationTests()
     {
@@ -58,6 +57,13 @@ public class IsdcSsmApplicationTests
     {
         User user = userDAO.selectByEmail("1364847132@qq.com");
         System.out.println(user.getIsMember());
+        System.out.println(user.getAccessToken());
+    }
+
+    @Test
+    public void DirTest()
+    {
+
     }
 }
 
