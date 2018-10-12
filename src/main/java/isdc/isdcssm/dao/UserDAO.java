@@ -23,7 +23,8 @@ public interface UserDAO extends tk.mybatis.mapper.common.Mapper<User> {
             @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
             @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
             @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
-            @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT)
+            @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT),
+            @Result(column="is_member", property="isMember", jdbcType=JdbcType.BIT)
     })
     @Select("select * from user where email = #{email}")
     User selectByEmail(String email);
@@ -35,7 +36,8 @@ public interface UserDAO extends tk.mybatis.mapper.common.Mapper<User> {
             @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
             @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
             @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
-            @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT)
+            @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT),
+            @Result(column="is_member", property="isMember", jdbcType=JdbcType.BIT)
     })
     @Select("select * from user where access_token = #{accessToken}")
     User selectByAccessToken(String accessToken);

@@ -30,6 +30,17 @@ public class User {
     @Column(name = "`is_root`")
     private Boolean isRoot;
 
+    @Column(name = "'is_member'")
+    private Boolean isMember;
+
+    public Boolean getIsMember() {
+        return isMember;
+    }
+
+    public void setIsMember(Boolean member) {
+        isMember = member;
+    }
+
     /**
      * @return id
      */
