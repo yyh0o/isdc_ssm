@@ -9,15 +9,14 @@ import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Component;
 
 /**
- * 通用 Mapper 代码生成器
- *
- * @author mapper-generator
- */
+* 通用 Mapper 代码生成器
+*
+* @author mapper-generator
+*/
 @Component
 @Mapper
-public interface UserDAO extends tk.mybatis.mapper.common.Mapper<User>
-{
-    @Results({
+public interface UserDAO extends tk.mybatis.mapper.common.Mapper<User> {
+@Results({
             @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
             @Result(column = "access_token", property = "accessToken", jdbcType = JdbcType.VARCHAR),
             @Result(column = "email", property = "email", jdbcType = JdbcType.VARCHAR),
