@@ -52,7 +52,11 @@ public class UserServiceImpl implements UserService
         User userByEmail = userDAO.selectByEmail(email);
         if (userByEmail != null && userByEmail.getPassword().equals(password))
         {
-            //userByEmail.setAccessToken(TokenAuthenticationService.addAuthentication(String.valueOf(userByEmail.getId())));
+            if(userByEmail.getAccessToken()==null)
+            {
+                userByEmail.setAccessToken(TokenAuthenticationService.addAuthentication(String.valueOf(userByEmail.getId())));
+                userDAO.updateByPrimaryKey(userByEmail);
+            }
             return modelMapper.map(userByEmail, UserResponse.class);
         }
         return null;

@@ -33,7 +33,6 @@ public class IsdcSsmApplicationTests
     @Autowired
     private ApplicationFormDAO applicationFormDAO;
 
-
     public IsdcSsmApplicationTests()
     {
 
@@ -55,9 +54,16 @@ public class IsdcSsmApplicationTests
     @Test
     public void UserDAOTest()
     {
-        User user = userDAO.selectByEmail("1364847132@qq.com");
-        System.out.println(user.getIsMember());
-        System.out.println(user.getAccessToken());
+        User user = new User();
+        user.setIsMember(false);
+        user.setId(1111112);
+        user.setEmail("2864847133@qq.com");
+        user.setEnabled(true);
+        user.setIsRoot(false);
+        user.setPassword("123456789");
+        user.setUserName("qweeee");
+        userDAO.insert(user);
+
     }
 
     @Test
