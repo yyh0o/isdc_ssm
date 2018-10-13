@@ -9,6 +9,7 @@ import isdc.isdcssm.model.User;
 import isdc.isdcssm.service.UserService;
 import isdc.isdcssm.support.Authorization;
 import isdc.isdcssm.support.CurrentUser;
+import isdc.isdcssm.support.TokenAuthenticationService;
 import isdc.isdcssm.support.VerifyCodeUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class UserController {
             user.setPassword(request.getPassword());
             user.setEnabled(true);
             user.setIsRoot(false);
+            user.setIsMember(false);
             if (userService.signUp(user)) {
                 return BaseResponse.success("注册成功");
             }

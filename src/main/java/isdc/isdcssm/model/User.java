@@ -1,10 +1,7 @@
 package isdc.isdcssm.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import javax.persistence.*;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "`user`")
 public class User {
     @Id
@@ -30,16 +27,8 @@ public class User {
     @Column(name = "`is_root`")
     private Boolean isRoot;
 
-    @Column(name = "'is_member'")
+    @Column(name = "`is_member`")
     private Boolean isMember;
-
-    public Boolean getIsMember() {
-        return isMember;
-    }
-
-    public void setIsMember(Boolean member) {
-        isMember = member;
-    }
 
     /**
      * @return id
@@ -137,5 +126,19 @@ public class User {
      */
     public void setIsRoot(Boolean isRoot) {
         this.isRoot = isRoot;
+    }
+
+    /**
+     * @return is_member
+     */
+    public Boolean getIsMember() {
+        return isMember;
+    }
+
+    /**
+     * @param isMember
+     */
+    public void setIsMember(Boolean isMember) {
+        this.isMember = isMember;
     }
 }
