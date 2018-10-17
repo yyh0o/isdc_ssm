@@ -15,11 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.zip.ZipOutputStream;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,6 +33,8 @@ public class IsdcSsmApplicationTests
     private UserDAO userDAO;
     @Autowired
     private ApplicationFormDAO applicationFormDAO;
+    @Autowired
+    private FileServiceImpl fileService;
 
     public IsdcSsmApplicationTests()
     {
@@ -58,9 +61,11 @@ public class IsdcSsmApplicationTests
     }
 
     @Test
-    public void DirTest()
+    public void DirTest() throws IOException
     {
-
+        InputStream inputStream = fileService.DownloadStream("1", "wuuuudle@gmail.com");
+        System.out.println(inputStream.read());
+        inputStream.close();
     }
 }
 
