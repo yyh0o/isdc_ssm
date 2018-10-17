@@ -2,6 +2,7 @@ package isdc.isdcssm.service;
 
 import isdc.isdcssm.model.ApplicationForm;
 
+import java.io.InputStream;
 import java.util.List;
 
 public interface FileService
@@ -12,4 +13,5 @@ public interface FileService
 
     String queryAll();
 
+    InputStream DownloadStream(String times, String email);
 }
