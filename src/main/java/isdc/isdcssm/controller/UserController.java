@@ -1,5 +1,6 @@
 package isdc.isdcssm.controller;
 
+import isdc.isdcssm.dao.UserDAO;
 import isdc.isdcssm.dto.BaseResponse;
 
 import isdc.isdcssm.dto.Request.LoginRequest;
@@ -13,6 +14,7 @@ import isdc.isdcssm.support.TokenAuthenticationService;
 import isdc.isdcssm.support.VerifyCodeUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import javax.servlet.http.HttpServletResponse;
@@ -25,11 +27,13 @@ public class UserController {
 
     private final UserService userService;
     private final ModelMapper modelMapper;
+    private final UserDAO userDAO;
 
     @Autowired
-    public UserController(UserService userService, ModelMapper modelMapper) {
+    public UserController(UserService userService, ModelMapper modelMapper, UserDAO userDAO) {
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.userDAO = userDAO;
     }
 
 
@@ -67,9 +71,9 @@ public class UserController {
     }
 
     @GetMapping(value = "auth")
-    @Authorization
-    public BaseResponse login(@CurrentUser User user) {
-        System.out.println(user.getId());
+    //@Authorization
+    public BaseResponse login(@CookieValue(value = "accessToken") String accessToken) {
+        User user = userDAO.selectByAccessToken(accessToken);
         return BaseResponse.success(modelMapper.map(user, UserResponse.class));
     }
 
