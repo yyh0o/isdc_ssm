@@ -41,8 +41,10 @@ public class FileServiceImpl implements FileService
     public String getCurrentPath(String accessToken)
     {
         User user = userDAO.selectByAccessToken(accessToken);
-        user.getEmail();
-        return rootPath + getCurrentTime() + "/" + user.getEmail() + "/";
+        String ret = rootPath + getCurrentTime() + "/" + user.getEmail() + "/";
+        File file = new File(ret);
+        if(!file.exists()) file.mkdir();
+        return ret;
     }
 
     private File[] getSortFiles(File file)
