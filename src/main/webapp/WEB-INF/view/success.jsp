@@ -21,10 +21,10 @@
 <div class="container">
     <div class="row card center-align" style="padding: 20px;">
         <div class="row center-align">
-            <img class="responsive-img col s12 l4" src="https://scuisdc.org/assets/logo_dark.png">
+            <img class="responsive-img col s12 l4" src="https://scuisdc.cn/assets/logo_dark.png">
         </div>
         <div class="row s6 center-align">
-            <img class="responsive-img" src="https://o11vcttoe.qnssl.com/qqgroup.jpg">
+            <img class="responsive-img" src="http://cdn.scuisdc.cn/qqgroup.jpg">
         </div>
         <div class="row center-align">
             <p>欢迎加入ISDC社团群，群号码：346784599</p>
