@@ -21,7 +21,7 @@
 <div class="container">
     <div class="row card" style="padding: 20px;">
         <div class="row center-align">
-            <img class="responsive-img col s12 l4" src="https://scuisdc.org/assets/logo_dark.png">
+            <img class="responsive-img col s12 l4" src="https://www.scuisdc.cn/assets/logo_dark.png">
             <h4 class="col s12 l8">招新报名表</h4>
         </div>
         <form class="col s12" action="" method="post">
@@ -32,7 +32,7 @@
                     <label for="name">姓名</label>
                 </div>
                 <div class="input-field col s12">
-                    <input placeholder="2018141463XXX" id="stuId" minlength="13" maxlength="13" type="number" required
+                    <input placeholder="2019141460XXX" id="stuId" minlength="13" maxlength="13" type="number" required
                            name="stuId"
                            class="validate">
                     <label for="stuId">学号</label>

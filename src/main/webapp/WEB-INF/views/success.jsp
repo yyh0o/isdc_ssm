@@ -21,7 +21,7 @@
 <div class="container">
     <div class="row card center-align" style="padding: 20px;">
         <div class="row center-align">
-            <img class="responsive-img col s12 l4" src="https://scuisdc.org/assets/logo_dark.png">
+            <img class="responsive-img col s12 l4" src="https://www.scuisdc.cn/assets/logo_dark.png">
         </div>
         <div class="row s6 center-align">
             <img class="responsive-img" src="http://cdn.scuisdc.cn/qqgroup.jpg">
