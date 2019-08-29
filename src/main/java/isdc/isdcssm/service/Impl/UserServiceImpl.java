@@ -15,20 +15,25 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService
+{
 
     private final UserDAO userDAO;
     private final ModelMapper modelMapper;
+
     @Autowired
-    public UserServiceImpl(UserDAO userDAO, ModelMapper modelMapper){
+    public UserServiceImpl(UserDAO userDAO, ModelMapper modelMapper)
+    {
         this.userDAO = userDAO;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
-    public boolean signUp(User user) {
-        if (userDAO.selectByEmail(user.getEmail()) == null) {
+    public boolean signUp(User user)
+    {
+        if (userDAO.selectByEmail(user.getEmail()) == null)
+        {
             userDAO.insert(user);
             return true;
         }
@@ -36,22 +41,48 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponse> listAll() {
-        return userDAO.selectAll().stream().map(p -> modelMapper.map(p,UserResponse.class)).collect(Collectors.toList());
+    public List<UserResponse> listAll()
+    {
+        return userDAO.selectAll().stream().map(p -> modelMapper.map(p, UserResponse.class)).collect(Collectors.toList());
     }
 
     @Override
-    public UserResponse login(String email, String password) {
+    public UserResponse login(String email, String password)
+    {
         User userByEmail = userDAO.selectByEmail(email);
-        if (userByEmail != null && userByEmail.getPassword().equals(password)) {
-            userByEmail.setAccessToken(TokenAuthenticationService.addAuthentication(String.valueOf(userByEmail.getId())));
+        if (userByEmail != null && userByEmail.getPassword().equals(password))
+        {
+            if(userByEmail.getAccessToken()==null)
+            {
+                userByEmail.setAccessToken(TokenAuthenticationService.addAuthentication(String.valueOf(userByEmail.getId())));
+                userDAO.updateByPrimaryKey(userByEmail);
+            }
             return modelMapper.map(userByEmail, UserResponse.class);
         }
         return null;
     }
 
     @Override
-    public UserResponse auth(String accessToken) {
+    public UserResponse auth(String accessToken)
+    {
         return modelMapper.map(userDAO.selectByAccessToken(accessToken), UserResponse.class);
+    }
+
+    @Override
+    public boolean adminAuth(String accessToken)
+    {
+        User checker = userDAO.selectByAccessToken(accessToken);
+        if (checker != null && checker.getIsRoot())
+            return true;
+        return false;
+    }
+
+    @Override
+    public boolean isMember(String accessToken)
+    {
+        User checker = userDAO.selectByAccessToken(accessToken);
+        if (checker != null && checker.getIsMember())
+            return true;
+        return false;
     }
 }

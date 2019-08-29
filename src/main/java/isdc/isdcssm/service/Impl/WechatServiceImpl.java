@@ -37,6 +37,8 @@ public class WechatServiceImpl implements WechatService {
         if (applicationFormDAO.queryByOpenid(openid)==null) {
             ApplicationForm applicationForm = new ApplicationForm();
             applicationForm.setOpenid(openid);
+            applicationForm.setBlock(false);
+            applicationForm.setPass(false);
             applicationFormDAO.insert(applicationForm);
         }
     }

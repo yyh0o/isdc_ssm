@@ -6,7 +6,7 @@
     <groupId>isdc</groupId>
     <artifactId>isdc-ssm</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>isdc-ssm</name>
     <description>Demo project for Spring Boot</description>
@@ -94,8 +94,16 @@
         </dependency>
         <!-- jstl支持-->
 
-
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
 
 
 
@@ -133,8 +141,19 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>2.0.4.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.9</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -180,10 +199,16 @@
                         <artifactId>jaxb-impl</artifactId>
                         <version>2.1.12</version>
                     </dependency>
+
+                    <dependency>
+                        <groupId>com.alibaba</groupId>
+                        <artifactId>fastjson</artifactId>
+                        <version>1.2.9</version>
+                    </dependency>
                 </dependencies>
             </plugin>
             <!-- mvn mybatis-generator:generate -->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.7</version>
@@ -193,11 +218,21 @@
                     <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
                 </configuration>
                 <dependencies>
-                    &lt;!&ndash; 数据库驱动 &ndash;&gt;
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
                         <version>5.1.46</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.freemarker</groupId>
+                        <artifactId>freemarker</artifactId>
+                        <version>2.3.23</version>
+                    </dependency>
+                    <!--MyBatis Generator及工具-->
+                    <dependency>
+                        <groupId>org.mybatis.generator</groupId>
+                        <artifactId>mybatis-generator-core</artifactId>
+                        <version>1.3.7</version>
                     </dependency>
                     <dependency>
                         <groupId>tk.mybatis</groupId>
@@ -205,7 +240,7 @@
                         <version>4.0.2</version>
                     </dependency>
                 </dependencies>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 
