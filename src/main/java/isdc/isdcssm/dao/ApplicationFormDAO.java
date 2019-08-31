@@ -6,7 +6,6 @@ import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
 * 通用 Mapper 代码生成器
@@ -64,7 +63,7 @@ public interface ApplicationFormDAO extends tk.mybatis.mapper.common.Mapper<Appl
             @Result(column="introduce", property="introduce", jdbcType=JdbcType.LONGVARCHAR),
             @Result(column="judge", property="judge", jdbcType=JdbcType.LONGVARCHAR)
     })
-    @Select("select * from application_form where name is not null and create_date like '2018%'")
+    @Select("select * from application_form where name is not null and create_date like '2019%'")
     List<ApplicationForm> findAll();
 }
 
