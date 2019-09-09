@@ -65,20 +65,20 @@ public class WeChatController {
 
 
                     return xmlNewsMessage.toXML();
-//                } else if (eventMessage.getContent().contains("面试")) {
-//                    String openid = eventMessage.getFromUserName();
-//                    Optional<ApplicationForm> applications = joinService.queryForm(openid);
-//                    String msg = "";
-//                    if (!applications.isPresent() || applications.get().getImpressionScore() == null)
-//                        msg = "查询不到您的面试记录！";
-//                    else {
-//                        boolean pass = applications.get().getPass();
-//                        if (pass)
-//                            msg = "恭喜你通过了我们的面试，请继续努力，创造一个更优秀的你！";
-//                        else
-//                            msg = "很遗憾，没有通过我们的面试。但是请你相信，一往无前，会有奇迹发生！";
-//                    }
-//                    return new XMLTextMessage(eventMessage.getFromUserName(), eventMessage.getToUserName(), msg).toXML();
+                } else if (eventMessage.getContent().contains("结果")) {
+                    String openid = eventMessage.getFromUserName();
+                    Optional<ApplicationForm> applications = joinService.queryForm(openid);
+                    String msg = "";
+                    if (!applications.isPresent() || applications.get().getImpressionScore() == null)
+                        msg = "查询不到您的面试记录！";
+                    else {
+                        boolean pass = applications.get().getPass();
+                        if (pass)
+                            msg = "恭喜你通过了我们的面试，请继续努力，创造一个更优秀的你！";
+                        else
+                            msg = "很遗憾，没有通过我们的面试。但是请你相信，一往无前，会有奇迹发生！";
+                    }
+                    return new XMLTextMessage(eventMessage.getFromUserName(), eventMessage.getToUserName(), msg).toXML();
                 } else if (eventMessage.getContent().contains("面试")) {
                     String openid = eventMessage.getFromUserName();
                     Optional<ApplicationForm> applications = joinService.queryForm(openid);
