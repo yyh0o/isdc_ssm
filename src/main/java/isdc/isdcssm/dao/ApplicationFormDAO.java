@@ -63,7 +63,7 @@ public interface ApplicationFormDAO extends tk.mybatis.mapper.common.Mapper<Appl
             @Result(column="introduce", property="introduce", jdbcType=JdbcType.LONGVARCHAR),
             @Result(column="judge", property="judge", jdbcType=JdbcType.LONGVARCHAR)
     })
-    @Select("select * from application_form where name is not null and create_date like '2019%'")
+    @Select("select * from application_form where name is not null and create_date like '2020%'")
     List<ApplicationForm> findAll();
 }
 

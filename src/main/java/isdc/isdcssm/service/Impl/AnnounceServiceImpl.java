@@ -27,7 +27,7 @@ public class AnnounceServiceImpl implements AnnounceService {
 
     @Override
     public List<Announce> listAll() {
-        return announceDAO.selectAll();
+        return announceDAO.findAll();
     }
 
 }
