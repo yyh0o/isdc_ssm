@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.type.JdbcType;
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
+//import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
